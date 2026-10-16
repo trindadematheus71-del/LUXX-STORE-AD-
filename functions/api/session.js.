@@ -2,17 +2,12 @@
 import { isAdmin, json } from '../_lib/auth.js';
 
 export async function onRequestGet({ request, env }) {
-  try {
-    const admin = await isAdmin(request, env);
+  const admin = await isAdmin(request, env);
 
-    return json(
-      { admin },
-      200,
-      { 'Cache-Control': 'no-store' }
-    );
-  } catch {
-    return json({ admin: false }, 500, {
-      'Cache-Control': 'no-store'
-    });
-  }
+  return json(
+    { admin },
+    200,
+    { 'Cache-Control': 'no-store' }
+  );
 }
+
