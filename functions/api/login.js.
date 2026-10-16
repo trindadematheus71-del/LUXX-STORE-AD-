@@ -1,0 +1,26 @@
+import { createSessionToken, sessionCookie, json } from '../_lib/auth.js';
+
+export async function onRequestPost({ request, env }) {
+  if (!env.ADMIN_PASSWORD || !env.SESSION_SECRET) {
+    return json({ error: 'Configuração incompleta.' }, 500);
+  }
+
+  try {
+    const body = await request.json();
+    const password = body.password ?? body.senha;
+
+    if (password !== env.ADMIN_PASSWORD) {
+      return json({ error: 'Senha incorreta.' }, 401);
+    }
+
+    const token = await createSessionToken(env.SESSION_SECRET);
+
+    return json(
+      { success: true },
+      200,
+      { 'Set-Cookie': sessionCookie(token) }
+    );
+  } catch {
+    return json({ error: 'Requisição inválida.' }, 400);
+  }
+}
