@@ -1,0 +1,20 @@
+LUXX STORE AD — SITE PÚBLICO
+
+Este pacote contém o HTML-base da loja pública extraído do editor fornecido.
+O editor continuará sendo a fonte dos produtos, categorias, configurações e imagens.
+
+IMPORTANTE SOBRE A PUBLICAÇÃO AUTOMÁTICA
+Não envie este ZIP pelo método Drag and drop do Cloudflare Pages se quiser atualização automática. O envio direto cria uma publicação manual e não acompanha os commits do GitHub.
+
+INSTALAÇÃO PARA PUBLICAÇÃO AUTOMÁTICA
+1. Faça backup do conteúdo atual do repositório GitHub LUXX-STORE-AD-.
+2. Extraia este ZIP e coloque o arquivo index.html na raiz do repositório LUXX-STORE-AD-.
+3. Faça commit na branch main.
+4. No Cloudflare, crie um NOVO projeto Pages usando Connect to Git e selecione o repositório LUXX-STORE-AD-.
+5. Configure: Framework preset = None; Build command = vazio; Build output directory = . (ponto); Root directory = / (padrão).
+6. O projeto deve usar o nome luxxstoread para manter o endereço luxxstoread.pages.dev. Se esse nome ainda estiver ocupado pelo projeto antigo, primeiro remova o projeto antigo depois de confirmar que tem backup e que pode recriá-lo.
+7. O Worker luxx-store-api deve continuar apontando para o repositório LUXX-STORE-AD-, branch main, e gravando o index.html na raiz. Quando o editor publicar, o Worker fará commit e o Pages Git-integrado iniciará o deploy automaticamente.
+
+NÃO APAGUE O PROJETO ANTIGO ANTES DE TER BACKUP E CONFIRMAR QUE O NOVO PROJETO PODE USAR O NOME luxxstoread.
+
+Este pacote não contém segredos, tokens ou credenciais. Não coloque PUBLISH_SECRET ou GITHUB_TOKEN no HTML nem no repositório público.
